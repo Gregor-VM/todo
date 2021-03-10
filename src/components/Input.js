@@ -1,14 +1,14 @@
 import React from 'react';
 import {useState} from 'react'
 
-function Input() {
+function Input({setter}) {
     
     const [noteDesc, setNoteDesc] = useState('');
     const [noteTitle, setNoteTitle] = useState('');
 
     const handleNoteDesc = (e) => setNoteDesc(e.target.value);
     const handleNoteTitle = (e) => setNoteTitle(e.target.value);
-    const handleSendNote = () => console.log(noteDesc + noteTitle);
+    const handleSendNote = () => setter({title: noteTitle, description: noteDesc});
 
     return (
         <>
