@@ -1,5 +1,18 @@
 import React from 'react';
 
+
+function Notes({notes, delete:handleNoteDelete}) {
+
+    return (
+        <>
+            <h4 className="my-3 mx-4 text-muted">Notas</h4>
+            <div className="row">
+                {notes.map((note, i) => <NoteItem delete={handleNoteDelete} index={i} key={i} {...note} />)}
+            </div>
+        </>
+    )
+}
+
 function NoteItem({title, description, delete:handleNoteDelete, index}){
     return (
         <div className="col-md-6">
@@ -18,18 +31,6 @@ function NoteItem({title, description, delete:handleNoteDelete, index}){
             </div>
         </div>
     );
-}
-
-function Notes({notes, delete:handleNoteDelete}) {
-
-    return (
-        <>
-            <h4 className="my-3 mx-4 text-muted">Notas</h4>
-            <div className="row">
-                {notes.map((note, i) => <NoteItem delete={handleNoteDelete} index={i} key={i} {...note} />)}
-            </div>
-        </>
-    )
 }
 
 export default Notes
