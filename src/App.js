@@ -4,19 +4,25 @@ import Input from './components/Input';
 import Notes from './components/Notes';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import './Global.css';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 
 function App() {
 
-  const [notes, setNotes] = useState([{title: "Titulo", description:"Este es un ejemplo genério y corto de como sería una descripción"}, {title: "Titulo 2", description:"Este es un ejemplo genérico y corto de como sería una descripción"}]);
+  const savedNotes = localStorage.getItem('notes');
+
+  const [notes, setNotes] = useState(savedNotes !== null ? JSON.parse(savedNotes) : []);
   const [editNote, setEditNote] = useState({});
+
+  useEffect(() => {
+    localStorage.setItem('notes', JSON.stringify(notes));
+  }, [notes])
 
   const handleNoteSetter = (note) => {
     setEditNote({});
     if(note.index !== undefined) {
       setNotes(prev => prev.map((el, i) => i === note.index ? note : el));
     }else{
-      setNotes(prev => [...prev, note])
+      setNotes(prev => [...prev, note]);
     }
   };
   const handleNoteDelete = (index) => setNotes(prev => prev.filter((item, i) => index !== i));
