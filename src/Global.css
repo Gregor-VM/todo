@@ -1,7 +1,15 @@
-i{
-    cursor: pointer;
+i {
+  cursor: pointer;
 }
 
-textarea{
-    resize: none !important;
+i:hover {
+  opacity: 0.7;
+}
+
+.card:hover {
+  border: 1px solid gray !important;
+}
+
+textarea {
+  resize: none !important;
 }
